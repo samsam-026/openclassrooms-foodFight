@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Turn based game</title>
+    <title>Food Fight!</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,10 +17,18 @@
 
 <body>
     <div class="container-fluid text-center">
-        <div class="row">
-            <div class="col-md-12" style="text-align: -webkit-center; margin-bottom:1em">
-                <h1>Food Fight!</h1>
+        <div class="row align-items-center">
+            <div class="col-md-2 text-center" id="player1Info">
+                <h1>Player One</h1>
+                <h2 id="player1Turn">Your turn!</h2>
+            </div>
+            <div class="col-md-8" style="text-align: -webkit-center; margin-bottom:1em">
+                <h1 style="margin-top: 10px;"><span class="icons">abc</span> Food Fight! <span class="icons">cba</span></h1>
                 <table id="grid"></table>
+            </div>
+            <div class="col-md-2 text-center" id="player2Info">
+                <h1>Player Two</h1>
+                <h2 id="player2Turn" class="d-none">Your turn!</h2>
             </div>
         </div>
     </div>

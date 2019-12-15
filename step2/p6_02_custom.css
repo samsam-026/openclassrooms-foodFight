@@ -1,9 +1,34 @@
-table {
-    border-collapse: collapse;
+@font-face {
+    font-family: 'Lemon Cookie';
+    src: url(fonts/LemonCookieBold.ttf);
 }
 
-table, th, td {
-    border: 1px solid rgba(0, 0, 0, 0.5);
+@font-face {
+    font-family: 'Food Icons';
+    src: url(fonts/Bocartes-fritos.ttf);
+}
+
+body {
+    background-color: #0C6C69;
+    color: white;
+}
+
+h1 {
+    font-family: 'Lemon Cookie';
+}
+
+span.icons {
+    font-family: 'Food Icons';
+}
+
+table {
+    border-collapse: collapse;
+    background-color: rgb(174, 230, 226);
+    box-shadow: inset 0 0 10px #000000;
+}
+
+td {
+    border: 2px solid #0C6C69;
 }
 
 table tr td {
@@ -12,21 +37,22 @@ table tr td {
 }
 
 .clickable {
-    border: 3px solid darkorchid;
+    border: 4px solid #E0533D;
     cursor: pointer !important;
 }
 
 .wall {
     width: inherit;
     height: inherit;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(172, 59, 94, 0.5);
     overflow: hidden;
-    border: 3px solid black;
+    border: 3px solid #5E2448;
     border-radius: 15px;
 }
 
 #grid {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    border: none;
 }
 
 .weapon {
