@@ -17,18 +17,72 @@
 
 <body>
     <div class="container-fluid text-center">
-        <div class="row align-items-center">
-            <div class="col-md-2 text-center" id="player1Info">
-                <h1>Player One</h1>
-                <h2 id="player1Turn">Your turn!</h2>
+        <div class="row align-items-center" id="startRow">
+            <div class="col-8">
+                <img src="images/food-fight.png" alt="Title" style="width:60%; height: auto;">
+                <ul class="instructions text-left">
+                    <li>You can move about horizontally and vertically, except through walls or your opponent.</li>
+                    <li>Once your opponent reaches you on any 4 sides, you will begin fighting.</li>
+                    <li>You can attack, defend and even move around to evade your opponent.</li>
+                    <li>You lose health points the more you get hit.</li>
+                    <li>When you defend yourself, the next attack from your opponent is half as strong.</li>
+                    <li>May the best tactician win. Godspeed!</li>
+                </ul>
             </div>
-            <div class="col-md-8" style="text-align: -webkit-center; margin-bottom:1em">
-                <h1 style="margin-top: 10px;"><span class="icons">abc</span> Food Fight! <span class="icons">cba</span></h1>
+            <div class="col-4">
+                <form>
+                    <div class="form-group text-left">
+                        <label for="player1NameInput">Player 1</label>
+                        <input type="text" class="form-control" name="player1NameInput" id="player1NameInput" required>
+                    </div>
+                    <div class="form-group text-left">
+                        <label for="player2NameInput">Player 2</label>
+                        <input type="text" class="form-control" name="player2NameInput" id="player2NameInput" required>
+                    </div>
+                    <button type="button" class="btn btn-block btn-primary" id="playButton">Play!</button>
+                </form>
+            </div>
+        </div>
+        <div class="row d-none" id="gameRow">
+            <div class="col-md-3 text-center" id="player1Info">
+                <div class="progress" id="player1Health">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                </div>
+                <h1 id="player1Name" class="display-2">Player One</h1>
+                <h2 id="player1Turn" class="display-4">Your turn!</h2>
+                <div id="player1Buttons" class="d-none">
+                    <button type="button" class="btn btn-block btn-primary" id="player1Attack">Attack</button>
+                    <button type="button" class="btn btn-block btn-secondary" id="player1Defend">Defend</button>
+                    <button type="button" class="btn btn-block btn-tertiary" id="player1Move">Move</button>
+                </div>
+            </div>
+            <div class="col-md-6" style="text-align: -webkit-center; margin-bottom:1em">
+                <h1 style="margin-top: 10px;" class="display-3"><span class="icons">abc</span> Food Fight! <span class="icons">cba</span></h1>
                 <table id="grid"></table>
             </div>
-            <div class="col-md-2 text-center" id="player2Info">
-                <h1>Player Two</h1>
-                <h2 id="player2Turn" class="d-none">Your turn!</h2>
+            <div class="col-md-3 text-center" id="player2Info">
+                <div class="progress" id="player2Health">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                </div>
+                <h1 id="player2Name" class="display-2">Player Two</h1>
+                <h2 id="player2Turn" class="display-4 d-none">Your turn!</h2>
+                <div id="player2Buttons" class="d-none">
+                    <button type="button" class="btn btn-block btn-primary" id="player2Attack">Attack</button>
+                    <button type="button" class="btn btn-block btn-secondary" id="player2Defend">Defend</button>
+                    <button type="button" class="btn btn-block btn-tertiary" id="player2Move">Move</button>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center d-none" id="gameOverRow">
+            <div class="col-8">
+                <img src="images/game-over.png" alt="Title" style="width:70%; height: auto;">
+                <!-- <h1 class="display-1">Game Over!</h1> -->
+            </div>
+            <div class="col-4" style="padding-left: 0; padding-right: 5em;">
+                <img src="images/girl.png" alt="Winning player" id="winningPlayer" class="img-fluid">
+                <h1 class="display-2" id="winnerName"></h1>
+                <h2 class="display-4" id="winnerHealth">Health: </h2>
+                <button type="button" id="playAgainButton" class="btn btn-block btn-primary">Play Again</button>
             </div>
         </div>
     </div>
@@ -37,8 +91,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-    <script src="js/p6_03_utils.js"></script>
     <script src="js/p6_03_gameobject.js"></script>
     <script src="js/p6_03_weapon.js"></script>
     <script src="js/p6_03_player.js"></script>

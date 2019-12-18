@@ -88,7 +88,6 @@ class Grid {
                 // end the method if the above condition is true
                 return false;
             }
-
         }
         return true;
     }
@@ -110,15 +109,3 @@ class Grid {
     }
 
 }
-
-// create the game grid
-let gameGrid = new Grid(10, 10);
-
-// distribute the weapons
-weaponList.forEach(weapon => {
-    gameGrid.distributeObject(weapon);
-});
-
-// distribute the players
-gameGrid.distributeObject(player1);
-gameGrid.distributeObject(player2);

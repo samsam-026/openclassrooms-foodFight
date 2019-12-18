@@ -7,6 +7,8 @@ class Game {
         [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]
     ];
 
+    fight = false;
+
     constructor(player1, player2, grid) {
         this.grid = grid;
         this.player1 = player1;
@@ -14,9 +16,28 @@ class Game {
         this.currentPlayer = this.player1;
     }
 
+    checkNeighbours(x, y) {
+        let xDirections = [1, 0, 0, -1];
+        let yDirections = [0, 1, -1, 0];
+
+        // for each possible direction from the given grid postion
+        for (let i = 0; i < xDirections.length; i++) {
+            let newX = x + xDirections[i];
+            let newY = y + yDirections[i];
+
+            // check if the values are within the accepted range and a player is in the adjacent square
+            if (this.grid.withinRange("height", newY) && this.grid.withinRange("width", newX) && this.grid.getSquare(newX, newY).getPlayer()) {
+                // end the method if the above condition is true
+                return true;
+            }
+        }
+        return false;
+    }
+
     showMoves() {
-        // update the displayed grid 
-        this.grid.displayGrid();
+
+        this.player1.resetDefence();
+        this.player2.resetDefence();
 
         // remove the clickable class from all table cells
         $("td").removeClass("clickable");
@@ -97,6 +118,31 @@ class Game {
         }
     }
 
+    attackPlayer() {
+        // get the refernece to the other player
+        let otherPlayer = this.currentPlayer.getId() === this.player1.getId() ? this.player2 : this.player1;
+
+        // reduce their health by attacking them with the current players weapon score
+        let otherPlayerHealth = otherPlayer.isAttacked(this.currentPlayer.getWeapon().getPoints());
+
+        // if the other players health is more than 0
+        if (otherPlayerHealth > 0) {
+            // switch the players
+            this.switchPlayers();
+        } else {
+            // declare the game over
+            this.gameOver();
+        }
+    }
+
+    defendsOneself() {
+        // the current plyer defends themselves
+        this.currentPlayer.defendsSelf();
+
+        // switch the users
+        this.switchPlayers();
+    }
+
     makeMove(tileX, tileY, direction) {
 
         // get the old coordinates of the player
@@ -114,28 +160,61 @@ class Game {
         // update the square with the player
         this.grid.getSquare(tileX, tileY).setPlayer(this.currentPlayer);
 
+        // check if the players can fight
+        this.fight = this.checkNeighbours(tileX, tileY);
+
         // switch between the players
-        this.switchPlayers()
+        this.switchPlayers();
 
-        // show all possible moves
-        this.showMoves();
+        // update the displayed grid 
+        this.grid.displayGrid();
 
+        // if the players are not in fight mode
+        if (!this.fight) {
+            // show all possible moves
+            this.showMoves();
+        }
     }
 
     switchPlayers() {
-        // let currentPlayerName = this.currentPlayer.getName();
+        // get the current players id
+        let oldPlayerId = this.currentPlayer.getId();
 
-        this.currentPlayer = this.currentPlayer.getName() === this.player1.getName() ? this.player2 : this.player1;
+        // switch the players
+        this.currentPlayer = oldPlayerId === this.player1.getId() ? this.player2 : this.player1;
 
-        // let nextPlayerName = this.currentPlayer.getName();
+        // get the new players id
+        let nextPlayerId = this.currentPlayer.getId();
 
+        // display the appropriate "Your turn!" message
         $("#player1Turn, #player2Turn").toggleClass("d-none");
+
+        // if the players are in the fight mode
+        if (this.fight) {
+            // display the new players buttons and hide the old players buttons
+            $("#" + nextPlayerId + "Buttons").removeClass("d-none");
+            $("#" + oldPlayerId + "Buttons").addClass("d-none");
+
+            // personalize the attack method with the players weapon name
+            $("#" + nextPlayerId + "Attack").text("Throw " + this.currentPlayer.getWeapon().getName());
+        } else {
+            // hide all buttons
+            $("#player1Buttons, #player2Buttons").addClass("d-none");
+        }
 
     }
 
+    gameOver() {
+        // hide the game
+        $("#gameRow").addClass("d-none");
+
+        // update the winner details to display the winning player
+        $("#winningPlayer").attr("src", this.currentPlayer.getImage());
+        $("#winnerName").text(this.currentPlayer.getName() + " wins!");
+        $("#winnerHealth").append(this.currentPlayer.getHealth() + "%");
+
+        // display the game over section
+        $("#gameOverRow").removeClass("d-none");
+    }
+
 }
-
-// create a new game
-let gridGame = new Game(player1, player2, gameGrid);
-
-gridGame.showMoves();

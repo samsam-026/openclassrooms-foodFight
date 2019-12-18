@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Lemon Cookie';
-    src: url(fonts/LemonCookieBold.ttf);
+    font-family: 'Excelsior';
+    src: url(fonts/ExcelsiorSans.ttf);
 }
 
 @font-face {
@@ -13,8 +13,8 @@ body {
     color: white;
 }
 
-h1 {
-    font-family: 'Lemon Cookie';
+h1, h2, h3, h4 {
+    font-family: 'Excelsior';
 }
 
 span.icons {
@@ -78,4 +78,117 @@ table tr td {
 
 .player-div {
     position: relative;
+}
+
+label {
+    font-size: xx-large;
+}
+
+.form-control {
+    font-size: 1.75em;
+    background-color: transparent;
+    border-color: #E0533D;
+    border-width: 5px;
+    color: white;
+    border-radius: 2em;
+}
+
+.form-control:focus {
+    background-color: transparent;
+    border-color: #E0533D;
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(224, 83, 61, .75);
+}
+
+.btn {
+    border-radius: 2em;
+    font-size: 2em;
+}
+
+.btn-primary {
+    background-color: #5E2448;
+    border-color: #5E2448;
+}
+
+.btn-primary:hover {
+    background-color: #852d63;
+    border-color: #852d63;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: #852d63;
+    border-color: #852d63;
+    box-shadow: 0 0 0 0.2rem rgba(172, 59, 94, .5);
+}
+
+.btn-secondary {
+    background-color: #c94a36;
+    border-color: #c94a36;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary.focus, .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    background-color: #E0533D;
+    border-color: #E0533D;
+    box-shadow: 0 0 0 0.2rem rgba(224, 83, 61, .5);
+}
+
+.btn-tertiary {
+    background-color: #eead0e;
+    border-color: #eead0e;
+    color: white;
+}
+
+.btn-tertiary:hover, .btn-tertiary:focus, .btn-tertiary.focus, .btn-tertiary:not(:disabled):not(.disabled).active, .btn-tertiary:not(:disabled):not(.disabled):active, .show>.btn-tertiary.dropdown-toggle {
+    background-color: #ffb90f;
+    border-color: #ffb90f;
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(205, 155, 29, .5);
+}
+
+#player1Info, #player2Info {
+    padding-top: 5em;
+}
+
+#player1Info {
+    border-right: 0.25em solid white;
+}
+
+#player2Info {
+    border-left: 0.25em solid white;
+}
+
+#player1Name, #player2Name, #player1Turn, #player2Turn, #winnerName, #winnerHealth, #winningPlayer {
+    margin-bottom: 1rem;
+}
+
+.progress {
+    height: 1.5em;
+    border-radius: 2em;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+.instructions {
+    list-style: none;
+}
+
+.instructions li {
+    font-size: 1.5em;
+}
+
+.instructions li:before {
+    content: "\003F";
+    font-family: 'Food Icons';
+    display: inline-block;
+    margin-left: -1.3em;
+    width: 1.3em;
+    color: #cd899e;
+}
+
+#gameOverRow {
+    padding-top: 5em;
+}
+
+#winningPlayer {
+    width: 60%;
 }
