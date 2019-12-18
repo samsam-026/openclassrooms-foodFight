@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Lemon Cookie';
+    src: url(fonts/LemonCookieBold.ttf);
+}
+
+@font-face {
+    font-family: 'Food Icons';
+    src: url(fonts/Bocartes-fritos.ttf);
+}
+
+body {
+    background-color: #0C6C69;
+    color: white;
+}
+
+h1 {
+    font-family: 'Lemon Cookie';
+}
+
+span.icons {
+    font-family: 'Food Icons';
+}
+
+table {
+    border-collapse: collapse;
+    background-color: rgb(174, 230, 226);
+    box-shadow: inset 0 0 10px #000000;
+}
+
+td {
+    border: 2px solid #0C6C69;
+}
+
+table tr td {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.clickable {
+    border: 4px solid #E0533D;
+    cursor: pointer !important;
+}
+
+.wall {
+    width: inherit;
+    height: inherit;
+    background-color: rgba(172, 59, 94, 0.5);
+    overflow: hidden;
+    border: 3px solid #5E2448;
+    border-radius: 15px;
+}
+
+#grid {
+    padding-bottom: 10px;
+    border: none;
+}
+
+.weapon {
+    width: 30px;
+    height: 30px;
+    margin: 15px;
+}
+
+.player {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.player-weapon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    z-index: 3;
+}
+
+.player-div {
+    position: relative;
+}
