@@ -8,6 +8,7 @@ class Player extends GameObject {
     // clear defence move from player
     resetDefence() {
         this.defend = undefined;
+        $("#" + this.id + "DefendText").addClass("d-none");
     }
 
     getId() {
@@ -45,6 +46,7 @@ class Player extends GameObject {
     // player defends themselves from the next attack
     defendsSelf() {
         this.defend = true;
+        $("#" + this.id + "DefendText").removeClass("d-none");
     }
 
     setWeapon(weapon) {

@@ -196,7 +196,7 @@ class Game {
             $("#" + oldPlayerId + "Buttons").addClass("d-none");
 
             // personalize the attack method with the players weapon name
-            $("#" + nextPlayerId + "Attack").text("Throw " + this.currentPlayer.getWeapon().getName());
+            $("#" + nextPlayerId + "Attack").text("Throw " + this.currentPlayer.getWeapon().getName() + " (-" + this.currentPlayer.getWeapon().getPoints() + ")");
         } else {
             // hide all buttons
             $("#player1Buttons, #player2Buttons").addClass("d-none");
